@@ -1,4 +1,4 @@
-// Função para abrir a câmera e exibir o overlay com um retângulo
+// Função para abrir a câmera e exibir o overlay com um retângulo centralizado na tela do usuário
 async function openCameraWithOverlay() {
     try {
         // Configurações para a câmera
@@ -24,12 +24,11 @@ async function openCameraWithOverlay() {
         // Desenha o overlay com um retângulo no centro da tela
         const videoWidth = video.videoWidth;
         const videoHeight = video.videoHeight;
-        const aspectRatio = videoWidth / videoHeight;
 
         // Tamanho e posição do retângulo centralizado
         const rectWidth = Math.min(videoWidth, videoHeight) * 0.5;
         const rectHeight = rectWidth * 0.5;
-        const rectX = (videoWidth - rectWidth) / 2;
+        const rectX = ((window.innerWidth - rectWidth) / 2);
         const rectY = (videoHeight - rectHeight) / 2;
 
         // Calcula a altura do overlay
@@ -48,9 +47,7 @@ async function openCameraWithOverlay() {
         // Desenha o retângulo no overlay
         const rectangle = document.createElement('div');
         rectangle.style.position = 'absolute';
-        rectangle.style.left = ((window.innerWidth - rectWidth) / 2) + 'px';
-
-        //rectangle.style.left = rectX + 'px'; // Posição inicial "X" do retângulo
+        rectangle.style.left = rectX + 'px'; // Posição inicial "X" do retângulo
         rectangle.style.top = rectY + 'px'; // Posição inicial "Y" do retângulo
         rectangle.style.width = rectWidth + 'px'; // Largura do retângulo
         rectangle.style.height = rectHeight + 'px'; // Altura do retângulo
